@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sudharsan V – Automation Test Engineer</title>
+<meta name="description" content="Sudharsan V, Automation Test Engineer in Hyderabad. Java, Playwright, TestNG, Selenium, accessibility and cross-browser testing.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F2F5F8; --surface:#FFFFFF; --ink:#13202C; --muted:#4F6272; --line:#D5DDE5;
+  --tag:#E6ECFF; --tag-ink:#2142C4; --accent:#2850E8; --pass:#13804F; --pass-bg:#E3F4EB;
+  --head:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --body:"Inter","Segoe UI",system-ui,sans-serif;
+  color-scheme:light; box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0C141C; --surface:#131F2B; --ink:#E6EEF5; --muted:#9AAEBF; --line:#26374A;
+    --tag:#1B2B4F; --tag-ink:#A9BDFF; --accent:#7C9BFF; --pass:#4ADE9A; --pass-bg:#12301F; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0C141C; --surface:#131F2B; --ink:#E6EEF5; --muted:#9AAEBF; --line:#26374A;
+  --tag:#1B2B4F; --tag-ink:#A9BDFF; --accent:#7C9BFF; --pass:#4ADE9A; --pass-bg:#12301F; color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 70px);scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.65}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+a{color:var(--accent)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:11;background:var(--bg);border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;height:62px}
+.logo{font-family:var(--head);font-weight:800;font-size:1.35rem;text-decoration:none;color:var(--ink)}
+.logo span{color:var(--accent)}
+nav ul{display:flex;gap:4px;list-style:none;margin:0;padding:0}
+nav a{color:var(--muted);text-decoration:none;font-size:.95rem;padding:8px 11px;border-radius:8px;display:block}
+nav a:hover{color:var(--ink);background:var(--surface)}
+@media (max-width:820px){nav ul{overflow-x:auto;max-width:64vw;gap:0}nav a{padding:8px 9px;font-size:.9rem;white-space:nowrap}.logo{font-size:1.2rem}}
+
+.hero{display:grid;grid-template-columns:1.2fr .8fr;gap:48px;align-items:center;padding:72px 0 88px}
+.eyebrow{color:var(--accent);font-weight:500;margin:0 0 14px;font-size:.98rem}
+h1{font-family:var(--head);font-weight:800;font-size:clamp(2.3rem,6vw,3.9rem);line-height:1.04;margin:0 0 14px;letter-spacing:-.02em}
+.role{font-family:var(--head);font-weight:700;font-size:clamp(1.2rem,3vw,1.7rem);margin:0 0 20px;min-height:1.5em}
+.role span{color:var(--accent)}
+.caret{display:inline-block;width:2px;height:1.1em;background:var(--accent);vertical-align:-.15em;margin-left:3px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.lede{color:var(--muted);max-width:34em;margin:0 0 28px}
+.btns{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.btn{display:inline-block;padding:12px 22px;border-radius:8px;font-weight:500;text-decoration:none;border:1.5px solid var(--ink);color:var(--ink)}
+.btn.primary{background:var(--ink);color:var(--bg)}
+.social{display:flex;gap:10px;margin-left:6px}
+.social a{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--line);display:grid;place-items:center;color:var(--ink);background:var(--surface)}
+.social a:hover{border-color:var(--accent);color:var(--accent)}
+.social svg{width:20px;height:20px;fill:currentColor}
+.photo{justify-self:center;width:min(300px,70vw);aspect-ratio:1;border-radius:50%;background:var(--surface);border:2px solid var(--line);display:grid;place-items:center;font-family:var(--head);font-weight:800;font-size:5rem;color:var(--accent);box-shadow:0 0 0 10px var(--tag);overflow:hidden}
+.photo img{width:100%;height:100%;object-fit:cover;display:block}
+
+section{padding:72px 0;border-top:1px solid var(--line)}
+.kicker{color:var(--muted);margin:0 0 4px}
+h2{font-family:var(--head);font-weight:700;font-size:clamp(1.7rem,3.6vw,2.3rem);margin:0 0 32px;letter-spacing:-.01em}
+h3.sub{font-family:var(--head);font-size:1.3rem;margin:40px 0 16px}
+.about{max-width:44em}.about p{margin:0 0 16px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:32px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px}
+.stat b{display:block;font-family:var(--head);font-size:2rem;line-height:1.1;color:var(--accent)}
+.stat span{color:var(--muted);font-size:.95rem}
+.item{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:26px;margin-bottom:20px}
+.item h3{font-family:var(--head);margin:0;font-size:1.25rem}
+.item .meta{color:var(--muted);font-size:.95rem;margin:2px 0 12px}
+.item .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.badge{background:var(--pass-bg);color:var(--pass);font-size:.8rem;font-weight:500;padding:2px 10px;border-radius:999px}
+.item ul{margin:0 0 16px;padding-left:20px;max-width:46em}
+.item li{padding-bottom:6px}
+.item p{margin:8px 0 16px;max-width:46em}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tag{background:var(--tag);color:var(--tag-ink);padding:3px 12px;border-radius:999px;font-size:.85rem;font-weight:500}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+.grid2 .item{margin:0}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:20px}
+.card h3{font-family:var(--head);margin:0 0 6px;font-size:1.1rem}
+.card p{margin:0;color:var(--muted);font-size:.97rem}
+.repo{display:block;text-decoration:none;color:var(--ink)}
+.repo:hover{border-color:var(--accent)}
+.repo small{color:var(--accent);font-weight:500}
+.skillgroup{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:22px;margin-bottom:16px}
+.skillgroup h3{font-family:var(--head);font-size:1.1rem;margin:0 0 12px}
+.tiles{display:flex;flex-wrap:wrap;gap:10px}
+.tile{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px 14px;font-weight:500;font-size:.95rem}
+.contact p{max-width:34em;color:var(--muted);margin:0 0 20px}
+footer{padding:32px 0 48px;color:var(--muted);font-size:.9rem;border-top:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+@media (max-width:820px){.hero{grid-template-columns:1fr;gap:36px;padding:40px 0 56px}.photo{order:-1;width:180px;font-size:3.2rem}body{font-size:16px}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.caret{animation:none}}
+</style>
+<style>
+/* navy theme */
+html:root:root{
+  --bg:#0E1629; --surface:#1B2539; --ink:#FFFFFF; --muted:#94A3B8; --line:#2A3850;
+  --tag:rgba(129,140,248,.16); --tag-ink:#C7D2FE; --accent:#818CF8; --pass:#4ADE9A; --pass-bg:rgba(74,222,154,.15);
+  color-scheme:dark;
+}
+body{
+  background:
+    radial-gradient(900px 600px at 100% 100%,rgba(79,70,229,.20),transparent 60%),
+    radial-gradient(800px 500px at 0% 15%,rgba(99,102,241,.12),transparent 60%),
+    #0E1629;
+  background-attachment:fixed;
+  min-height:100vh;
+}
+body::before{background:#0E1629}
+header.top{background:#0E1629;border-bottom:1px solid var(--line)}
+.logo,.logo span{color:var(--accent)}
+nav a{color:#CBD5E1;font-weight:500}
+nav a:hover{color:#fff;background:rgba(255,255,255,.06)}
+.btn{border-color:rgba(255,255,255,.4)}
+.btn.primary{background:#6366F1;color:#fff;border-color:#6366F1}
+.item,.card,.stat,.skillgroup{background:var(--surface);border-radius:16px}
+.stat b{color:var(--accent)}
+.photo{box-shadow:0 0 0 10px rgba(129,140,248,.16),0 0 60px rgba(99,102,241,.35)}
+main>section{display:flex;flex-direction:column;border-top:1px solid var(--line)}
+main>section>h2{order:-2;text-align:center;margin:0 0 10px;font-size:clamp(2rem,4.5vw,2.8rem);font-weight:800}
+main>section>.kicker{order:-1;text-align:center;margin:0 0 40px;font-size:1.1rem}
+h3.sub{text-align:center}
+.about{margin:0 auto}
+.contact p{margin:0 auto 20px;text-align:center}
+.contact .btns{justify-content:center}
+.skillgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:20px;max-width:960px;margin:0 auto;width:100%}
+.stile{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:24px 12px 20px;min-height:128px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;font-weight:600;font-size:.97rem;line-height:1.3}
+.stile svg{width:38px;height:38px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+/* contact cards */
+.contactgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;max-width:960px;margin:0 auto;width:100%}
+.ccard{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:6px;align-items:flex-start}
+.ccard svg{width:30px;height:30px;fill:none;stroke:var(--accent);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;margin-bottom:6px}
+.ccard b{font-family:var(--head);font-size:1.1rem}
+.ccard .val{color:var(--muted);word-break:break-all;margin-bottom:14px}
+.ccard .btn{margin-top:auto;padding:9px 18px;font-size:.95rem}
+button.btn{font:inherit;font-weight:500;cursor:pointer}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+<symbol id="i-coffee" viewBox="0 0 24 24"><path d="M4 9h13v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V9zM17 10h2a2 2 0 0 1 0 4h-2M8 3v3M12 3v3"/></symbol>
+<symbol id="i-braces" viewBox="0 0 24 24"><path d="M8 4c-2 0-3 1-3 3v2c0 1-1 2-2 3 1 1 2 2 2 3v2c0 2 1 3 3 3M16 4c2 0 3 1 3 3v2c0 1 1 2 2 3-1 1-2 2-2 3v2c0 2-1 3-3 3"/></symbol>
+<symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5 9-5zM3 13l9 5 9-5"/></symbol>
+<symbol id="i-cycle" viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.3-5.6M20 4v4h-4"/></symbol>
+<symbol id="i-clip" viewBox="0 0 24 24"><path d="M7 4h10v17H7zM10 2h4v4h-4zM10 11h4M10 15h4"/></symbol>
+<symbol id="i-table" viewBox="0 0 24 24"><path d="M3 5h18v14H3zM3 10h18M9 5v14"/></symbol>
+<symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L3 21l1.9-5.6A8 8 0 1 1 21 12z"/></symbol>
+<symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></symbol>
+<symbol id="i-smile" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></symbol>
+<symbol id="i-checks" viewBox="0 0 24 24"><path d="M9 6h12M9 12h12M9 18h12M3 6l1.5 1.5L7 5M3 12l1.5 1.5L7 11M3 18l1.5 1.5L7 17"/></symbol>
+<symbol id="i-leaf" viewBox="0 0 24 24"><path d="M12 21v-8M12 13c0-4 3-7 8-7 0 4-3 7-8 7zM12 15c0-3-2-5-6-5 0 3 2 5 6 5z"/></symbol>
+<symbol id="i-layout" viewBox="0 0 24 24"><path d="M3 3h18v6H3zM3 13h8v8H3zM15 13h6v8h-6z"/></symbol>
+<symbol id="i-access" viewBox="0 0 24 24"><circle cx="12" cy="4" r="2"/><path d="M5 8l7 1 7-1M12 9v5M9 21l3-7 3 7"/></symbol>
+<symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20"/></symbol>
+<symbol id="i-ok" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></symbol>
+<symbol id="i-bug" viewBox="0 0 24 24"><path d="M8 8h8v7a4 4 0 0 1-8 0V8zM9 8V6a3 3 0 0 1 6 0v2M4 12h4M16 12h4M5 6l3 2M19 6l-3 2M5 19l3-2M19 19l-3-2"/></symbol>
+<symbol id="i-pulse" viewBox="0 0 24 24"><path d="M3 12h4l3-8 4 16 3-8h4"/></symbol>
+<symbol id="i-arrows" viewBox="0 0 24 24"><path d="M4 8h14M14 4l4 4-4 4M20 16H6M10 12l-4 4 4 4"/></symbol>
+<symbol id="i-box" viewBox="0 0 24 24"><path d="M21 8l-9-5-9 5v8l9 5 9-5V8zM3 8l9 5 9-5M12 13v8"/></symbol>
+<symbol id="i-branch" viewBox="0 0 24 24"><path d="M6 3v12M18 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM6 21a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM18 9a9 9 0 0 1-9 9"/></symbol>
+<symbol id="i-kanban" viewBox="0 0 24 24"><path d="M4 4h5v16H4zM10 4h5v10h-5zM16 4h4v13h-4z"/></symbol>
+<symbol id="i-ring" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></symbol>
+<symbol id="i-term" viewBox="0 0 24 24"><path d="M4 4h16v16H4zM8 10l3 2-3 2M13 15h4"/></symbol>
+<symbol id="i-code" viewBox="0 0 24 24"><path d="M8 6l-6 6 6 6M16 6l6 6-6 6M14 4l-4 16"/></symbol>
+<symbol id="i-cursor" viewBox="0 0 24 24"><path d="M5 3l14 7-6 2-2 6L5 3z"/></symbol>
+</defs></svg>
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#home">Sv<span>.</span></a>
+    <nav aria-label="Main">
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="hero" id="home">
+    <div>
+      <p class="eyebrow">Quality Assurance · Automation · Test Frameworks</p>
+      <h1>Hi, I’m Sudharsan V</h1>
+      <p class="role">I am a <span id="typed">Automation Test Engineer</span><i class="caret" aria-hidden="true"></i></p>
+      <p class="lede">Automation Test Engineer with 1.5 years of experience building Page Object Model frameworks in Java and Playwright with TestNG. I cut regression cycle time and reduce production defects through faster, steadier release feedback.</p>
+      <div class="btns">
+        <a class="btn primary" href="Sudharsan_V_Resume.pdf" download>Download Resume</a>
+        <div class="social">
+          <a href="mailto:sudharsanworklife@gmail.com" aria-label="Email Sudharsan"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm9 7.2L4.6 7H4v.4l8 5.3 8-5.3V7h-.6L12 12.2zM4 9.8V17h16V9.8l-8 5.3-8-5.3z"/></svg></a>
+          <a href="https://www.linkedin.com/in/sudharsan-venkatachalam-416032259/" target="_blank" rel="noopener" aria-label="Sudharsan on LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.5h4V21H3V9.5zm7 0h3.8v1.6h.1c.5-1 1.9-2 3.9-2 4.1 0 4.7 2.7 4.7 6.2V21h-4v-5.1c0-1.2 0-2.8-1.7-2.8s-2 1.3-2 2.7V21h-4V9.5z"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="photo"><img src="https://avatars.githubusercontent.com/u/181322748?v=4" alt="Sudharsan V" onerror="this.replaceWith(document.createTextNode('SV'))"></div>
+  </div>
+
+  <section id="about">
+    <p class="kicker">A little about me</p>
+    <h2>About</h2>
+    <div class="about">
+      <p>I’m an Automation Test Engineer based in Hyderabad. I build Page Object Model frameworks in Java and Playwright with TestNG, and I move regression testing from manual and Selenium-only processes to fast, repeatable automation.</p>
+      <p>I’m skilled across functional, regression, cross-browser and accessibility testing, and I’ve introduced parallel execution to speed up release feedback. I work in Agile teams, log and track defects in Jira, and review coverage and release readiness with developers and stakeholders.</p>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>1.5 years</b><span>of automation testing experience</span></div>
+      <div class="stat"><b>20–25%</b><span>shorter regression cycles with a Playwright suite</span></div>
+      <div class="stat"><b>20–30%</b><span>shorter suite runtime with parallel execution</span></div>
+    </div>
+    <h3 class="sub">What I test</h3>
+    <div class="grid3">
+      <div class="card"><h3>Smoke and sanity</h3><p>Quick checks that a build starts, and that fixes work before wider testing.</p></div>
+      <div class="card"><h3>Regression</h3><p>Repeatable automated runs that confirm existing features still work after each release.</p></div>
+      <div class="card"><h3>Functional and exploratory</h3><p>Testing against requirements and sprint scope, plus exploratory passes on web and mobile.</p></div>
+      <div class="card"><h3>Accessibility</h3><p>Testing to improve usability for users with disabilities.</p></div>
+      <div class="card"><h3>Cross-browser</h3><p>Consistent behaviour across browsers, devices, and web and mobile.</p></div>
+      <div class="card"><h3>API testing</h3><p>Checking service behaviour alongside UI flows.</p></div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <p class="kicker">Where I’ve worked</p>
+    <h2>Experience</h2>
+    <article class="item">
+      <div class="row"><h3>Automation Engineer Associate Analyst</h3><span class="badge">Current</span></div>
+      <div class="meta">EverNorth Health Services · Hyderabad · 05/2026 – Present</div>
+      <ul>
+        <li>Own smoke, sanity and regression suites for a home-delivery application, validating every release and reducing production defects.</li>
+        <li>Migrated regression from a manual and Selenium-only process to a Playwright suite, cutting regression cycle time by about 20–25%.</li>
+        <li>Implemented the Page Object Model in Playwright to improve readability and reduce duplication.</li>
+        <li>Run accessibility, cross-browser and compatibility testing across web and mobile.</li>
+        <li>Log and track defects in Jira, and review coverage and release readiness with developers and stakeholders.</li>
+      </ul>
+      <div class="tags"><span class="tag">Playwright</span><span class="tag">POM</span><span class="tag">Jira</span><span class="tag">Accessibility</span><span class="tag">Cross-browser</span></div>
+    </article>
+    <article class="item">
+      <h3>Quality Assurance I</h3>
+      <div class="meta">Techdome Solutions · Hyderabad · 03/2025 – 04/2026</div>
+      <ul>
+        <li>Built automated scripts in Java and Playwright for a digital marketing application, covering the search module, results module and dashboard.</li>
+        <li>Introduced parallel test execution, cutting suite runtime by about 20–30% and speeding up release feedback.</li>
+        <li>Ran cross-browser, smoke, sanity, regression and exploratory testing for web and mobile.</li>
+        <li>Maintained the framework’s Maven build and Git repository, and wrote sprint test case documentation in Agile ceremonies.</li>
+      </ul>
+      <div class="tags"><span class="tag">Java</span><span class="tag">Playwright</span><span class="tag">Maven</span><span class="tag">Git</span><span class="tag">Agile</span></div>
+    </article>
+  </section>
+
+  <section id="projects">
+    <p class="kicker">What I’ve built and tested</p>
+    <h2>Projects</h2>
+    <div class="grid2">
+      <article class="item">
+        <h3>Home-Delivery Application: Automation and Regression</h3>
+        <p>Moved regression from a manual and Selenium-only process to a Playwright suite built on the Page Object Model, with smoke and sanity suites run on every release. Regression cycle time fell by about 20–25%.</p>
+        <div class="tags"><span class="tag">Playwright</span><span class="tag">POM</span><span class="tag">Jira</span><span class="tag">Accessibility</span></div>
+      </article>
+      <article class="item">
+        <h3>Digital Marketing Application: Test Automation</h3>
+        <p>Automated the search module, results module and dashboard with Java and Playwright. Parallel execution cut suite runtime by about 20–30%, so releases got feedback sooner.</p>
+        <div class="tags"><span class="tag">Java</span><span class="tag">Playwright</span><span class="tag">Maven</span><span class="tag">Git</span></div>
+      </article>
+    </div>
+  </section>
+
+  <section id="skills">
+    <p class="kicker">Tools and technologies I work with</p>
+    <h2>Skills</h2>
+    <div class="skillgrid">
+      <div class="stile"><svg style="color:#FB923C" aria-hidden="true"><use href="#i-coffee"/></svg><span>Core Java</span></div>
+      <div class="stile"><svg style="color:#FBBF24" aria-hidden="true"><use href="#i-braces"/></svg><span>JavaScript</span></div>
+      <div class="stile"><svg style="color:#C084FC" aria-hidden="true"><use href="#i-layers"/></svg><span>OOPS</span></div>
+      <div class="stile"><svg style="color:#38BDF8" aria-hidden="true"><use href="#i-cycle"/></svg><span>SDLC</span></div>
+      <div class="stile"><svg style="color:#2DD4BF" aria-hidden="true"><use href="#i-clip"/></svg><span>STLC</span></div>
+      <div class="stile"><svg style="color:#4ADE80" aria-hidden="true"><use href="#i-table"/></svg><span>Data-Driven Testing</span></div>
+      <div class="stile"><svg style="color:#F472B6" aria-hidden="true"><use href="#i-chat"/></svg><span>BDD</span></div>
+      <div class="stile"><svg style="color:#818CF8" aria-hidden="true"><use href="#i-gear"/></svg><span>Selenium WebDriver</span></div>
+      <div class="stile"><svg style="color:#4ADE80" aria-hidden="true"><use href="#i-smile"/></svg><span>Playwright</span></div>
+      <div class="stile"><svg style="color:#34D399" aria-hidden="true"><use href="#i-checks"/></svg><span>TestNG</span></div>
+      <div class="stile"><svg style="color:#4ADE80" aria-hidden="true"><use href="#i-leaf"/></svg><span>Cucumber</span></div>
+      <div class="stile"><svg style="color:#38BDF8" aria-hidden="true"><use href="#i-layout"/></svg><span>POM</span></div>
+      <div class="stile"><svg style="color:#F472B6" aria-hidden="true"><use href="#i-access"/></svg><span>Accessibility Testing</span></div>
+      <div class="stile"><svg style="color:#38BDF8" aria-hidden="true"><use href="#i-globe"/></svg><span>Cross-Browser Testing</span></div>
+      <div class="stile"><svg style="color:#34D399" aria-hidden="true"><use href="#i-ok"/></svg><span>Functional Testing</span></div>
+      <div class="stile"><svg style="color:#C084FC" aria-hidden="true"><use href="#i-bug"/></svg><span>Regression Testing</span></div>
+      <div class="stile"><svg style="color:#FB923C" aria-hidden="true"><use href="#i-pulse"/></svg><span>Smoke &amp; Sanity Testing</span></div>
+      <div class="stile"><svg style="color:#FB923C" aria-hidden="true"><use href="#i-arrows"/></svg><span>API Testing</span></div>
+      <div class="stile"><svg style="color:#F87171" aria-hidden="true"><use href="#i-box"/></svg><span>Maven</span></div>
+      <div class="stile"><svg style="color:#E2E8F0" aria-hidden="true"><use href="#i-branch"/></svg><span>Git</span></div>
+      <div class="stile"><svg style="color:#38BDF8" aria-hidden="true"><use href="#i-kanban"/></svg><span>Jira</span></div>
+      <div class="stile"><svg style="color:#818CF8" aria-hidden="true"><use href="#i-ring"/></svg><span>Eclipse</span></div>
+      <div class="stile"><svg style="color:#F472B6" aria-hidden="true"><use href="#i-term"/></svg><span>IntelliJ</span></div>
+      <div class="stile"><svg style="color:#A78BFA" aria-hidden="true"><use href="#i-code"/></svg><span>Visual Studio</span></div>
+      <div class="stile"><svg style="color:#E2E8F0" aria-hidden="true"><use href="#i-cursor"/></svg><span>Cursor IDE</span></div>
+    </div>
+  </section>
+
+  <section id="education">
+    <p class="kicker">Academic background</p>
+    <h2>Education</h2>
+    <article class="item">
+      <h3>B.Tech</h3>
+      <div class="meta">Bannari Amman Institute of Technology · 2020 – 2024 · CGPA 8.0/10</div>
+    </article>
+    <article class="item">
+      <h3>Languages</h3>
+      <div class="meta">English, Tamil</div>
+    </article>
+  </section>
+
+  <section id="contact" class="contact">
+    <p class="kicker">Let’s talk</p>
+    <h2>Contact</h2>
+    <p>I’m open to conversations about QA and automation roles.</p>
+    <div class="contactgrid">
+      <div class="ccard"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v14H3zM3 7l9 6 9-6"/></svg><b>Email</b><span class="val">sudharsanworklife@gmail.com</span><a class="btn primary" href="mailto:sudharsanworklife@gmail.com">Send email</a></div>
+      <div class="ccard"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg><b>Phone</b><span class="val">8754174414</span><a class="btn primary" href="tel:8754174414">Call now</a></div>
+      <div class="ccard"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 11v6M8 7.5v.01M12 17v-6M12 13c0-1.5 1-2 2-2s2 .8 2 2.2V17"/></svg><b>LinkedIn</b><span class="val">sudharsan-venkatachalam</span><a class="btn primary" href="https://www.linkedin.com/in/sudharsan-venkatachalam-416032259/" target="_blank" rel="noopener">View profile</a></div>
+    </div>
+  </section>
+</main>
+<div class="wrap"><footer><span>© 2026 Sudharsan V</span><span>Hyderabad, India</span></footer></div>
+
+<script>
+(function(){
+  var el=document.getElementById('typed');
+  var roles=['Automation Test Engineer','Playwright with Java Automation Engineer','QA Analyst'];
+  if(!el||window.matchMedia('(prefers-reduced-motion: reduce)').matches){return;}
+  var r=0,c=roles[0].length,del=true,wait=0;
+  setInterval(function(){
+    if(wait>0){wait--;return;}
+    var w=roles[r];
+    if(del){c--;el.textContent=w.slice(0,c);if(c===0){del=false;r=(r+1)%roles.length;}}
+    else{c++;el.textContent=roles[r].slice(0,c);if(c===roles[r].length){del=true;wait=22;}}
+  },70);
+})();
+</script>
+</body>
+</html>
